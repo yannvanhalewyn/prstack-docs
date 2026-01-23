@@ -5,21 +5,17 @@ description: Understanding PrStack's approach to PR stack management
 
 # Philosophy: Freedom from Fixed Stacks
 
-Unlike traditional PR stack tools like [Git Machete](https://github.com/VirtusLab/git-machete) and [Graphite](https://graphite.dev/), PrStack doesn't require you to pre-define or maintain a fixed stack structure. Instead, it **dynamically discovers your current stack** by tracing from your current position back to the trunk branch.
+Active development can be dynamic and unpredictable. **PRStack** embraces the chaos of real development. Instead of forcing you to pre-plan your branching strategy, it dynamically discovers your current stack by tracing from wherever you are back to the trunk. Want to branch off your feature branch to try a different approach? Just do it. Need to go back and create a hotfix branch three commits ago? No problem. PRStack adapts to whatever shape your development tree has taken, making stack management feel effortless rather than burdensome.
 
-## How PrStack Differs
+## Alternative Tools
 
-### Git Machete
+There are other PR stacking tools like [Git Machete](https://github.com/VirtusLab/git-machete) and [Graphite](https://graphite.dev/). These have their own strengths.
 
-[Git Machete](https://github.com/VirtusLab/git-machete) requires you to explicitly define your branch relationships in a `.git/machete` file before you can manage your stack. This works well for planned, linear development but becomes cumbersome when you need to pivot, explore alternatives, or work on multiple features simultaneously. Every time your branching strategy changes, you must manually update the machete file to reflect the new structure.
+Graphite offers an amazing UI for representing PR stacks and code reviews. However it requires you to manually specify the stack each time, which becomes cumbersome with some more [advanced workflows](/docs/workflows/megamerge-workflow) and makes it harder to react to structural changes. It's also paid (with free tier), closed source and needs permissions to access your repository.
 
-### Graphite
+Git Machete is a strong tool, and while it does offer a way to discover stacks from the Git log, this command needs to be ran explicitely meaing the stack model can get outdated. Running commands can feel a bit clunky and it's not trivial to create and merge PRs.
 
-[Graphite](https://graphite.dev/) takes a more opinionated approach with explicit stack management commands. While powerful, it enforces a structured workflow where you must think about stack operations upfront. You create stacks, manage them explicitly, and follow Graphite's mental model of how development should flow. This can feel restrictive when inspiration strikes and you want to branch off in a new direction.
-
-### PrStack's Approach
-
-**PrStack** embraces the chaos of real development. Instead of forcing you to pre-plan your branching strategy, it dynamically discovers your current stack by tracing from wherever you are back to the trunk. Want to branch off your feature branch to try a different approach? Just do it. Need to go back and create a hotfix branch three commits ago? No problem. PrStack adapts to whatever shape your development tree has taken, making stack management feel effortless rather than burdensome.
+When using Git, you can still use something like Git Machete or Graphite under the hood to help out with rebasing stacks since PRStack does not offer any opinion or operations for this. You are responsible for managing your own Git log. [Jujutsu](https://github.com/martinvonz/jj) automatically rebases when altering the history so there is no more need for these tools when using Jujutsu.
 
 ## How It Works
 
@@ -30,38 +26,12 @@ PrStack embraces a **branch-anywhere** philosophy:
 3. **Adaptive management**: Switch to any other branch and run sync again - PrStack adapts to the new context
 4. **Automatic PR creation**: Missing PRs are identified and can be created with a single prompt
 
-## Example Workflow
-
-```bash
-# Branch off main for feature A
-jj new -m "Feature A"
-jj bookmark create feature-a
-
-# Branch off feature-a for feature B
-jj new -m "Feature B"
-jj bookmark create feature-b
-
-# Branch off feature-b for hotfix
-jj new -m "Critical hotfix"
-jj bookmark create hotfix
-
-# From hotfix: sync discovers hotfix → feature-b → feature-a → main
-prstack sync
-
-# Switch to feature-a and branch off for feature C
-jj edit feature-a
-jj new -m "Feature C"
-jj bookmark create feature-c
-
-# From feature-c: sync discovers feature-c → feature-a → main
-prstack sync
-```
-
 ## VCS Agnostic Design
 
-PrStack supports multiple version control systems:
+PrStack is implemented in a way to work with any Version Control System. Currently it supports these VCSs:
 
 - **[Jujutsu](https://github.com/martinvonz/jj)**: First-class support for the branchless VCS
-- **Git**: Traditional Git workflow support (coming soon)
+- **[Git](https://git-scm.com/)**: Traditional Git workflow support (coming soon)
 
+More can be added in the future by implementing the [VCS protocol](https://github.com/yannvanhalewyn/prstack/blob/main/src/prstack/vcs.clj#L18)
 Since [Jujutsu](https://github.com/martinvonz/jj) is branchless by design, PrStack continues this philosophy by constantly adapting to the current shape of your development tree, rather than forcing you into rigid branch structures.

@@ -1,9 +1,9 @@
 # AGENTS.md - Coding Guidelines for prstack Documentation
 
 ## Project Overview
-This is a Next.js 16 documentation site for PrStack, built with TypeScript, Fumadocs (MDX documentation framework), and TailwindCSS 4. The site uses static export for simple deployment and is managed with Bun as the package manager.
+This is a Next.js 16 documentation site for PRStack, built with TypeScript, Fumadocs (MDX documentation framework), and TailwindCSS 4. The site uses static export for simple deployment and is managed with Bun as the package manager.
 
-**Main Project:** https://github.com/yannvanhalewyn/prstack (Clojure/Babashka CLI tool)  
+**Main Project:** https://github.com/yannvanhalewyn/prstack (Clojure/Babashka CLI tool)
 **This Repository:** Documentation site for the PrStack tool
 
 ## Build/Dev/Test Commands
@@ -98,9 +98,9 @@ bun mermaid              # Generate Mermaid diagrams (CLI tool)
 3. **Use 'use client' only when necessary** (for interactivity, hooks, browser APIs):
    ```typescript
    'use client';
-   
+
    import { useState } from 'react';
-   
+
    export default function InteractiveComponent() {
      const [state, setState] = useState(0);
      return <button onClick={() => setState(s => s + 1)}>{state}</button>;
@@ -122,7 +122,7 @@ bun mermaid              # Generate Mermaid diagrams (CLI tool)
      onSelect: (id: string) => void;
      className?: string;
    }
-   
+
    function ComplexComponent(props: ComplexComponentProps) {
      // ...
    }
@@ -169,10 +169,10 @@ bun mermaid              # Generate Mermaid diagrams (CLI tool)
    ```css
    @import "tailwindcss";
    @import "@tailwindcss/typography";
-   
+
    @source "../../app/**/*.{ts,tsx}";
    @source "../../content/**/*.{md,mdx}";
-   
+
    @theme {
      /* Custom theme configuration goes here */
    }
@@ -266,7 +266,7 @@ documentation/
    ```typescript
    // ❌ Bad
    const data: any = fetchData();
-   
+
    // ✅ Good
    const data: unknown = fetchData();
    if (typeof data === 'object' && data !== null) {
