@@ -11,6 +11,28 @@ PrStack can be configured using a `.prstack/config.edn` file in your repository 
 
 Create a `.prstack/config.edn` file in your repository:
 
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+<TypeTable
+  type={{
+    ":vcs": {
+      description: "The VCS backend to use. Currently supported: `:jujutsu` and `:git`",
+      type: ":jujutsu or :git",
+      default: ":jujutsu",
+    },
+    ":ignored-branches": {
+      description: "A set of branches to ignore. Supports '*' wildcards.",
+      type: "set<string>",
+    },
+    ":feature-base-branches": {
+      description: "A set of branches that are feature bases. When PrStack discovers your stack, any branches in this set will be treated as a trunk for other stacks. This is also managed via the prstack feature-base command. Supports '*' wildcards",
+      type: "set<string>",
+    },
+  }}
+/>
+
+See the [feature base command](/docs/reference/feature-base) for more information about `:feature-base-branches`.
+
 *Example Configuration:*
 
 Here's a complete example configuration file:
@@ -18,42 +40,6 @@ Here's a complete example configuration file:
 ```clojure
 {:vcs :jujutsu ;; default
  :ignored-branches #{"deploy" "experimental" "temp-*" "wip-*"}
- :feature-base-branches #{"feature-redesign" "experimental-api"}}
+ :feature-base-branches #{"feature-redesign" "experimental-api" "feature-base-*}}
 ```
-
-## Configuration Options
-
-### `:vcs`
-
-The version control system (VCS) to use for stack discovery. Currently, PR Stack supports the following VCS systems: `:jujutsu` and `:git`. The default is Jujutsu.
-
-### `:ignored-branches`
-
-A set of branch names to exclude from stack discovery and operations. This is useful for filtering out temporary, experimental, or staging branches that shouldn't be part of your PR workflow.
-
-**Type**: Set of strings
-**Default**: `#{}`
-
-**Example**:
-```clojure
-{:ignored-branches #{"staging" "experimental" "temp-branch" "wip-*"}}
-```
-
-When PrStack discovers your stack, any branches in this set will be skipped and not included in the stack operations.
-
-### `:feature-base-branches`
-
-A set of branch names to treat as alternative trunk branches. Feature bases act as stopping points when discovering your stack, allowing you to create stacks of work that branch from a point other than the main trunk.
-
-**Type**: Set of strings
-**Default**: `#{}`
-
-**Example**:
-```clojure
-{:feature-base-branches #{"feature-redesign" "experimental-api"}}
-```
-
-When PrStack discovers your stack, it will stop at any feature base branch, treating it as the trunk for that particular stack. This is useful for organizing large features that require multiple PRs that belong together. Experimental work that shouldn't yet target the main branch.
-
-You can also manage feature bases using the [`prstack feature-base`](/docs/reference/feature-base) command.
 

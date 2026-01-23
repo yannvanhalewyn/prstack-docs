@@ -15,13 +15,23 @@ PrStack offers two ways to work:
 
 ## Benefits
 
-Using PRStack reduces the overhead of creating and merging PRs to a mere afterthought. Wether you make a few PRs here and there, or are in active development creating dozens of PRs per week, PRStack provides give you all the regular actions at the press of a button.
+Using PRStack reduces the overhead of creating and merging PRs to a mere afterthought. Wether you make a few PRs here and there, or are in active development creating dozens of PRs per week, PRStack provides all the regular actions at the press of a button.
 
 ## How it works
 
-1. Work on a feature. Make one or more branches, stacked, parallel or any mix
-2. At any moment, PRStack generates a Directed Acyclic Graph (DAG) of your commit history
-3. You can now inspect and manage the PR graph
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+  <Step>
+  Work on a feature. Make one or more branches, stacked, parallel or any mix
+  </Step>
+  <Step>
+  At any moment, PRStack reads your commit history into a Directed Acyclic Graph (DAG)
+  </Step>
+  <Step>
+  Using this DAG, PRStack can visualize and manage your PRs
+  </Step>
+</Steps>
 
 ## Reasoning
 
@@ -31,18 +41,34 @@ By dynamically discovering your stack based on your current context, PRStack eli
 
 ## Quick Example
 
+<Tabs items={['Jujutsu', 'Git']}>
+  <Tab value="Jujutsu">
+
 ```bash
-# Branch off main for feature A
+# Create feature-a branch
 jj new -m "Feature A"
 jj bookmark create feature-a
-
-# Branch off feature-a for feature B
+# Create feature-b branch
 jj new -m "Feature B"
 jj bookmark create feature-b
-
 # From feature-b: sync discovers feature-b → feature-a → main
 prstack sync
 ```
+
+  </Tab>
+  <Tab value="Git">
+
+```bash
+# Create feature-a branch
+git checkout -b feature-a
+# Create feature-b branch
+git checkout -b feature-b
+prstack sync
+```
+
+  </Tab>
+</Tabs>
+
 
 ## Next Steps
 
