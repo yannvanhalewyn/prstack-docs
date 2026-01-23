@@ -1,23 +1,33 @@
 ---
 title: Introduction
-description: A VCS-agnostic CLI and TUI app for effortless PR stack management
+description: A CLI and TUI app for effortless PR management
 ---
 
 # PrStack
 
-A VCS-agnostic CLI and TUI app for effortless PR stack management that embraces the chaos of day-to-day development.
+PRStack is a flexible tool that embraces the chaos of day to day development. It allows you to create any workflows your VCS supports, and offers commands to manage PRs based on the current state of the commit log.
 
-## CLI + TUI: Your Choice
+## CLI and TUI app
 
 PrStack offers two ways to work:
 - **TUI App**: Run `prstack` for an interactive terminal interface to detect, navigate, and manage your stacks with visual diffs, PR creation, merging, and more
 - **CLI Commands**: Use individual commands like `prstack sync` for quick, scriptable operations in your existing workflow
 
-## Why PrStack?
+## Benefits
 
-Traditional PR stack tools require upfront planning and adherence to predefined structures. PrStack recognizes that development is organic - you branch where needed, pivot when requirements change, and explore multiple approaches simultaneously. Making PRs is an afterthought, and `prstack` comes in at the right time to help you manage them when the time comes.
+Using PRStack reduces the overhead of creating and merging PRs to a mere afterthought. Wether you make a few PRs here and there, or are in active development creating dozens of PRs per week, PRStack provides give you all the regular actions at the press of a button.
 
-By dynamically discovering your stack based on your current context, PrStack eliminates the friction of stack management while maintaining the benefits of organized, reviewable changes.
+## How it works
+
+1. Work on a feature. Make one or more branches, stacked, parallel or any mix
+2. At any moment, PRStack generates a Directed Acyclic Graph (DAG) of your commit history
+3. You can now inspect and manage the PR graph
+
+## Reasoning
+
+Traditional PR stacking tools require planning and adherence to predefined structures. PRStack recognizes that development is organic - you branch where needed, pivot when requirements change, and explore multiple approaches simultaneously. Making PRs is an afterthought. A good PR management tool comes in at the right time to help you manage them, when you are ready.
+
+By dynamically discovering your stack based on your current context, PRStack eliminates the friction of stack management while maintaining the benefits of organized, reviewable changes.
 
 ## Quick Example
 
