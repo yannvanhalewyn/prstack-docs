@@ -8,17 +8,17 @@
 @source "../../mdx-components.{ts,tsx}";
 
 @theme {
-  /* Dark theme colors - Deep purple-blue base */
+  /* Dark theme colors - Deep purple base with richer saturation */
   --color-gray-50: #0a0a14;
-  --color-gray-100: #13132b;
-  --color-gray-200: #1a1a3e;
-  --color-gray-300: #252547;
-  --color-gray-400: #3d3d5c;
-  --color-gray-500: #5a5a7a;
-  --color-gray-600: #8484a8;
-  --color-gray-700: #b0b0c8;
-  --color-gray-800: #d4d4e8;
-  --color-gray-900: #ebebf5;
+  --color-gray-100: #1a1338;
+  --color-gray-200: #1f1a42;
+  --color-gray-300: #2d2456;
+  --color-gray-400: #3f3466;
+  --color-gray-500: #5a5278;
+  --color-gray-600: #8080a0;
+  --color-gray-700: #acacc4;
+  --color-gray-800: #d0d0e4;
+  --color-gray-900: #e8e8f2;
   
   /* Accent colors - Vibrant cyan & electric purple */
   --color-cyan-400: #22d3ee;
@@ -37,18 +37,18 @@
 :root {
   --fd-background: #0a0a14;
   --fd-foreground: #d4d4e8;
-  --fd-muted: #13132b;
+  --fd-muted: #1a1338;
   --fd-muted-foreground: #8484a8;
-  --fd-popover: #1a1a3e;
+  --fd-popover: #1f1a42;
   --fd-popover-foreground: #d4d4e8;
-  --fd-card: #13132b;
+  --fd-card: #1a1338;
   --fd-card-foreground: #d4d4e8;
-  --fd-border: #252547;
+  --fd-border: #2d2456;
   --fd-primary: #22d3ee;
   --fd-primary-foreground: #0a0a14;
   --fd-secondary: #c084fc;
   --fd-secondary-foreground: #0a0a14;
-  --fd-accent: #1a1a3e;
+  --fd-accent: #1f1a42;
   --fd-accent-foreground: #22d3ee;
   --fd-ring: #22d3ee;
 }

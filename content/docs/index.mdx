@@ -11,6 +11,10 @@ It also supports a bunch of [workflows](/docs/workflows) that will make it a lot
 
 It's free and open source.
 
+## Why PR Stacking
+
+Development is an ongoing train of changes while an asynchronous review process goes on. When a feature gets done and a PR is submitted, you likely need to start working on the next thing. Often you'll want to keep working from where you where, so you make a new branch from your previous branch. This is the start of PR stacking. If a review process takes long enough, you may be 4 branches in and then things get more complicated to manage. Especially if you need to go back and make alterations based on review outputs, I recommend using [Jujutsu]() as it makes changing history, editing a past change or inserting a node early in a stack with auto rebasing easy. It also supports some advanced workflows like the [Megamerge Workflow](/docs/workflows/megamerge-workflow). Since Jujutsu makes managing your git log more like tending to a tree, or sculpting, I felt it needed a tool for managing these complex stacks and workflows to match the branchless and quick approach Jujutsu.
+
 ## CLI and TUI app
 
 PrStack offers two ways to work:

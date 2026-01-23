@@ -13,7 +13,7 @@ There are other PR stacking tools like [Git Machete](https://github.com/VirtusLa
 
 Graphite offers an amazing UI for representing PR stacks and code reviews. However it requires you to manually specify the stack each time, which becomes cumbersome with some more [advanced workflows](/docs/workflows/megamerge-workflow) and makes it harder to react to structural changes. It's also paid (with free tier), closed source and needs permissions to access your repository.
 
-Git Machete is a strong tool, and while it does offer a way to discover stacks from the Git log, this command needs to be ran explicitely meaing the stack model can get outdated. Running commands can feel a bit clunky and it's not trivial to create and merge PRs.
+Git Machete is a strong tool, and while it does offer a way to discover stacks from the Git log, this command needs to be ran explicitely meaing the stack model can get outdated. Running commands can feel a bit clunky and it's not trivial to view, create and merge PRs using it.
 
 When using Git, you can still use something like Git Machete or Graphite under the hood to help out with rebasing stacks since PRStack does not offer any opinion or operations for this. You are responsible for managing your own Git log. [Jujutsu](https://github.com/martinvonz/jj) automatically rebases when altering the history so there is no more need for these tools when using Jujutsu.
 
