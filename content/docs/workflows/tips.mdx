@@ -1,0 +1,86 @@
+---
+title: Tips & Tricks
+description: Best practices and tips for advanced PrStack workflows
+---
+
+# Tips for better workflows
+
+Below are some tips and tricks for PR stacking workflows.
+
+## 1. Name Branches Descriptively
+
+```bash
+# Good: Shows owner for collaboration and hierarchy in naming
+tom/feature-base-auth
+tom/feature-auth-backend
+tom/feature-auth-frontend
+tom/feature-auth-docs
+
+# Bad: Hard to understand relationships
+auth-base
+auth
+backend
+frontend
+```
+
+Clear branch names help you and your team understand the stack structure at a glance.
+
+## 2. Use Feature Bases for Big Features
+
+If you find yourself with more than a couple of branches in a stack, consider using a feature base to organize the work.
+
+Feature bases help you:
+- Group related work streams
+- Manage parallel development
+- Create logical merge points
+
+See the [feature-base command](/docs/reference/feature-base) for more details.
+
+## 3. Keep PR Sizes Reasonable
+
+Even in deep stacks, keep individual PRs small:
+- Aim for < 500 lines changed per PR
+- One logical change per PR
+- Stack depth is fine; PR size should be small
+
+Benefits:
+- Faster reviews
+- Easier to understand changes
+- Simpler to fix issues
+- Lower risk of conflicts
+
+## 4. Use Draft PRs for WIP
+
+Create PRs as drafts as soon as some work has been done. Convert to ready when the entire stack is complete.
+
+This does the following:
+
+- The work is still in progress
+- Others can see your progress and code changes
+- Signals they don't need to spend time on detailed review yet
+- Ensures work is always backed up as soon as you start
+
+## 5. Sync Frequently
+
+Run `prstack sync` often:
+- Before starting new work
+- After making commits
+- After merging PRs
+
+Frequent syncing:
+- Keeps your PRs up to date
+- Ensures remote is up to date
+- Reduces merge conflicts when collaborating
+
+## 6. Communicate with Your Team
+
+When working with stacked PRs, it's good to keep a good naming convention in PR names. Something like `dashboard-featurs: api-layer 1 - add basic api layer`
+
+*note*: having PRStack also maintain comments about the stack with links to other PR is something I'm considering. Submit a feature request issue if you'd like to see this.
+
+## 7. Use the TUI for Exploration
+
+The Terminal UI is great for:
+- Understanding stack structure and exploring PR structure
+- Viewing diffs between branches
+- Creating and merging PRs

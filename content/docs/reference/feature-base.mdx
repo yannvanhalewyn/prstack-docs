@@ -3,7 +3,7 @@ title: prstack feature-base
 description: Manage feature base branches
 ---
 
-# prstack feature-base
+# Command: `feature-base`
 
 Manage feature base branches in your repository. Feature base branches act as alternative trunk branches for organizing related work.
 
@@ -50,13 +50,12 @@ gitGraph
 In this example:
 - **`add-user-management`** is a feature base branch for a large user management feature
 - The following branches are stacked on the feature base:
-  - `api-auth → add-user-management` (authentication layer)
-  - `api-users → api-auth` (user CRUD endpoints, stacked on auth)
-  - `redesign-header → add-user-management` (header UI changes)
-  - `redesign-footer → add-user-management` (footer UI changes)
-  - `add-docs-for-user-management → add-user-management` (documentation)
+  - A stack with both **api-auth** and **api-users** on top of `add-user-management`
+  - **redesign-header** on top of `add-user-management` (header UI changes)
+  - **redesign-footer** on top of `add-user-management` (footer UI changes)
+  - **add-docs-for-user-management** on top of `add-user-management` (documentation)
 - All work branches target the feature base instead of `main`
-- When complete, `add-user-management` will have its own PR to merge into `main`
+- When complete, `add-user-management` will have its own PR for final discussions before merging into `main`
 
 ## Subcommands
 

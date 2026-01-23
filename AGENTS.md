@@ -9,33 +9,32 @@ This is a Next.js 16 documentation site for PrStack, built with TypeScript, Fuma
 ## Build/Dev/Test Commands
 
 ### Package Manager
-Use **Bun** for all package management operations:
-- `bun install` - Install dependencies
-- `bun add <package>` - Add a new dependency
-- `bun add -d <package>` - Add a dev dependency
-- `bun remove <package>` - Remove a dependency
+Use **Bun** (not npm/yarn/pnpm) for all package operations:
+```bash
+bun install              # Install dependencies
+bun add <package>        # Add dependency
+bun add -d <package>     # Add dev dependency
+bun remove <package>     # Remove dependency
+```
 
 ### Development Commands
-- `bun dev` - Start development server (http://localhost:3000)
-- `bun build` - Build for production (outputs to `./out/` directory)
-- `bun serve` - Serve static export locally (uses `serve` package on port 3000)
+```bash
+bun dev                  # Start dev server (localhost:3000)
+bun build                # Build static site → ./out/
+bun serve                # Serve ./out/ locally (port 3000)
+bun mermaid              # Generate Mermaid diagrams (CLI tool)
+```
 
 ### Build Artifacts
-- **Development:** `.next/` directory (gitignored)
-- **Production:** `./out/` directory (static export)
-- **Generated:** `.source/` directory (Fumadocs MDX compilation output)
+- `.next/` - Next.js dev build (gitignored)
+- `./out/` - Production static export
+- `.source/` - Fumadocs MDX compilation output
 
-### Testing
-**No testing framework is currently configured.** If tests are needed:
-- Consider adding Vitest for unit/component tests
-- Consider Playwright for E2E testing
-- Add test scripts to package.json: `"test": "vitest"` or similar
-
-### Linting & Formatting
-**No linting/formatting tools are currently configured.** If needed:
-- Consider adding ESLint: `bun add -d eslint eslint-config-next`
-- Consider adding Prettier: `bun add -d prettier`
-- Add scripts: `"lint": "eslint ."` and `"format": "prettier --write ."`
+### Testing & Linting
+**Not configured.** If adding:
+- Tests: Vitest (unit/component) or Playwright (E2E)
+- Linting: ESLint with `eslint-config-next`
+- Formatting: Prettier
 
 ## Code Style Guidelines
 

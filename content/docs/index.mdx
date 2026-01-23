@@ -1,41 +1,80 @@
 ---
 title: Introduction
-description: A VCS-agnostic CLI and TUI app for effortless PR stack management
+description: A CLI and TUI app for effortless PR management
 ---
 
 # PrStack
 
-A VCS-agnostic CLI and TUI app for effortless PR stack management that embraces the chaos of day-to-day development.
+PRStack is a flexible tool that embraces the chaos of day to day development. It allows you to create any workflows your Version Control System (VCS) supports, and offers commands to manage Pull Requests (PR) based on the current state of the commit log.
 
-## CLI + TUI: Your Choice
+It also supports a bunch of [workflows](/docs/workflows) that will make it a lot easier to make lots of small incremental Pull Requests. These workflows are also very suitable for modern parallelized AI powered development.
+
+## CLI and TUI app
 
 PrStack offers two ways to work:
 - **TUI App**: Run `prstack` for an interactive terminal interface to detect, navigate, and manage your stacks with visual diffs, PR creation, merging, and more
 - **CLI Commands**: Use individual commands like `prstack sync` for quick, scriptable operations in your existing workflow
 
-## Why PrStack?
+## Benefits
 
-Traditional PR stack tools require upfront planning and adherence to predefined structures. PrStack recognizes that development is organic - you branch where needed, pivot when requirements change, and explore multiple approaches simultaneously. Making PRs is an afterthought, and `prstack` comes in at the right time to help you manage them when the time comes.
+Using PRStack reduces the overhead of creating and merging PRs to a mere afterthought. Wether you make a few PRs here and there, or are in active development creating dozens of PRs per week, PRStack provides all the regular actions at the press of a button.
 
-By dynamically discovering your stack based on your current context, PrStack eliminates the friction of stack management while maintaining the benefits of organized, reviewable changes.
+## How it works
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+  <Step>
+  Work on a feature. Make one or more branches, stacked, parallel or any mix
+  </Step>
+  <Step>
+  At any moment, invoking `prstack` will read your commit history into a Directed Acyclic Graph (DAG)
+  </Step>
+  <Step>
+  Using this DAG, PRStack can visualize and manage your PRs
+  </Step>
+</Steps>
+
+## Reasoning
+
+Traditional PR stacking tools require planning and adherence to predefined structures. PRStack recognizes that development is organic - you branch where needed, pivot when requirements change, and explore multiple approaches simultaneously. Making PRs is an afterthought. A good PR management tool comes in at the right time to help you manage them, when you are ready.
+
+By dynamically discovering your stack based on your current context, PRStack eliminates the friction of imperative stack management.
 
 ## Quick Example
 
+<Tabs items={['Jujutsu', 'Git']}>
+  <Tab value="Jujutsu">
+
 ```bash
-# Branch off main for feature A
+# Create feature-a branch
 jj new -m "Feature A"
 jj bookmark create feature-a
-
-# Branch off feature-a for feature B
+# Create feature-b branch
 jj new -m "Feature B"
 jj bookmark create feature-b
-
 # From feature-b: sync discovers feature-b → feature-a → main
 prstack sync
 ```
 
+  </Tab>
+  <Tab value="Git">
+
+```bash
+# Create feature-a branch
+git checkout -b feature-a
+# Create feature-b branch
+git checkout -b feature-b
+prstack sync
+```
+
+  </Tab>
+</Tabs>
+
+
 ## Next Steps
 
-- [Installation](/docs/installation) - Get started with PrStack
+- [Installation](/docs/installation) - Get started with PRStack
+- [Workflows](/docs/workflows) - Learn to use PRStack along with some useful workflows
 - [Philosophy](/docs/philosophy) - Understand how PrStack differs from other tools
 - [Commands](/docs/commands/sync) - Learn the available commands

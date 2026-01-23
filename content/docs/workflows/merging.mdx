@@ -1,0 +1,128 @@
+---
+title: Handling Merges
+description: Managing PR merges
+---
+
+# Handling PR Merges in Stacks
+
+When a PR in your stack is merged, you need to update dependent branches.
+
+## Bottom-Up Merging (Recommended)
+
+Merge PRs from bottom to top of your stack:
+
+```
+feature-c → feature-b → feature-a → main
+```
+
+1. Merge `feature-a → main`
+2. Rebase `feature-b` onto `main`
+3. Merge `feature-b → main`
+4. Rebase `feature-c` onto `main`
+5. Merge `feature-c → main`
+
+**Workflow:**
+
+```bash
+# After feature-a is merged into main
+git checkout main
+git pull
+
+# Update feature-b to target main instead
+git checkout feature-b
+git rebase main
+
+# Update the PR base on GitHub (manual or via gh CLI)
+gh pr edit <pr-number> --base main
+
+# Continue with feature-c
+git checkout feature-c
+git rebase main
+gh pr edit <pr-number> --base main
+```
+
+## Keeping Stack Structure (Alternative)
+
+If you want to keep the stack structure for review purposes:
+
+```bash
+# After feature-a is merged
+git checkout feature-b
+git rebase main  # Rebase onto main, skipping feature-a commits
+
+# feature-a commits are now in main, so feature-b PR shows only B changes
+# PR base stays as feature-a (which now == main + A changes)
+```
+
+## Best Practices
+
+### Merge Order
+
+- **Start from the bottom**: Always merge the bottom-most PR first
+- **Sequential merging**: Merge one PR at a time
+- **Update dependencies**: Rebase dependent branches after each merge
+
+### Communication
+
+- **Update PR descriptions**: Note which PRs have been merged
+- **Use labels**: Tag PRs with their position in the stack
+- **Comment on status**: Keep reviewers informed of stack progress
+
+### Automation
+
+You can automate stack updates with GitHub Actions when PRs are merged. See the [CI/CD Integration](/docs/workflows/ci-cd) page for examples.
+
+## Common Scenarios
+
+### Merged Bottom PR
+
+```bash
+# feature-a has been merged to main
+git checkout main
+git pull
+
+# Update feature-b
+git checkout feature-b
+git rebase main
+git push --force-with-lease
+
+# Update PR target
+gh pr edit <pr-number> --base main
+```
+
+### Merged Middle PR
+
+If a middle PR gets merged before the bottom:
+
+```bash
+# feature-b was merged, but feature-a wasn't
+# Now feature-c depends on feature-a
+
+# Option 1: Merge feature-a next
+# Option 2: Rebase feature-c onto feature-b (if feature-a is no longer needed)
+
+git checkout feature-c
+git rebase feature-b  # Skip feature-a entirely
+```
+
+### Multiple PRs Ready
+
+```bash
+# If multiple PRs in your stack are approved:
+# Merge them in order from bottom to top
+
+# 1. Merge feature-a
+gh pr merge <pr-a> --squash
+
+# 2. Wait for CI, then update and merge feature-b
+git checkout main && git pull
+git checkout feature-b && git rebase main
+git push --force-with-lease
+gh pr merge <pr-b> --squash
+
+# 3. Repeat for feature-c
+git checkout main && git pull
+git checkout feature-c && git rebase main
+git push --force-with-lease
+gh pr merge <pr-c> --squash
+```

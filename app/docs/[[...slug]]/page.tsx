@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { DocsPage, DocsBody, DocsTitle, DocsDescription } from 'fumadocs-ui/page';
 import { Mermaid } from '@/components/Mermaid';
+import { useMDXComponents } from '@/mdx-components';
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -15,12 +16,14 @@ export default async function Page(props: {
   // page.data contains the doc entry with body, toc, etc.
   const MDX = (page.data as any).body;
 
+  const components = useMDXComponents({ Mermaid });
+
   return (
     <DocsPage toc={(page.data as any).toc} full={(page.data as any).full}>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={{ Mermaid }} />
+        <MDX components={components} />
       </DocsBody>
     </DocsPage>
   );

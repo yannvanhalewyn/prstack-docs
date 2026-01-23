@@ -1,0 +1,94 @@
+---
+title: Megamerge Workflow
+description: Managing complex multi-level PR stacks with PrStack
+---
+
+## Megamerge Workflow
+
+The [Megamerge Workflow](https://ofcr.se/jujutsu-merge-workflow) is a workflow that allows you to work simultaneously on multiple feature branches by creating something called a mega merge, a change which is a merge of multiple parallel branches. This allows you to see the result of all these changes combined, and offers benefits like catching merge conflicts early etc.. PR Stack is very suited for such workflows, with or without feature base branches.
+
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#6366f1','primaryTextColor':'#fff','primaryBorderColor':'#4f46e5','lineColor':'#94a3b8','secondaryColor':'#8b5cf6','tertiaryColor':'#10b981'}}}%%
+graph TB
+  main["main"]:::main
+
+  backend1["New API design"]:::feature
+  backend2["Database schema"]:::feature
+
+  frontend1["New UI framework"]:::feature
+  frontend2["Component library"]:::feature
+
+  migration1["Migration scripts"]:::feature
+  migration2["Data validation"]:::feature
+
+  docs1["API documentation"]:::feature
+  docs2["User guide"]:::feature
+
+  megamerge["Megamerge<br/>(all features combined)"]:::megamerge
+  release["Release v2.0"]:::main
+
+  main --> backend1
+  backend1 --> backend2
+
+  main --> frontend1
+  frontend1 --> frontend2
+
+  main --> migration1
+  migration1 --> migration2
+
+  main --> docs1
+  docs1 --> docs2
+
+  backend2 --> megamerge
+  frontend2 --> megamerge
+  migration2 --> megamerge
+  docs2 --> megamerge
+
+  megamerge --> release
+
+  classDef main fill:#6366f1,stroke:#4f46e5,color:#fff
+  classDef feature fill:#8b5cf6,stroke:#7c3aed,color:#fff
+  classDef megamerge fill:#10b981,stroke:#059669,color:#fff
+```
+
+
+This may seem like a daunting structure at first, but Jujutsu makes it trivial to maintain such a structure and squash or move changes back the correct stack. Git would make this a bit harder requiring lots of rebase operations, which is why traditional pr stacking tools feel more rigid. I recommend using Jujutsu for implementing such a workflow.
+
+As soon as you start having a few parallel stacks, I recommend trying this out. This setup offers the following **benefits**:
+
+- You work on the combination of all your changes together
+- Prevent and catch conflicts early
+- Still allows to create smaller PRs
+
+**Setup:**
+
+```bash
+# Multiple developers create branches off the feature base
+git checkout -b v2-backend v2-rewrite
+git checkout -b v2-frontend v2-rewrite
+git checkout -b v2-migration v2-rewrite
+git checkout -b v2-docs v2-rewrite
+
+# Each branch can be developed and PR'd independently
+git checkout v2-backend
+prstack sync  # Creates PR: v2-backend → v2-rewrite
+
+git checkout v2-frontend
+prstack sync  # Creates PR: v2-frontend → v2-rewrite
+```
+
+**Merging:**
+
+```bash
+# Review and merge all component PRs into v2-rewrite
+# (PRs target v2-rewrite, not main)
+
+# When all components are complete and merged into v2-rewrite
+# Remove the feature base designation
+prstack feature-base remove v2-rewrite
+
+# Create the final megamerge PR
+git checkout v2-rewrite
+prstack create
+# Creates PR: v2-rewrite → main
+```
