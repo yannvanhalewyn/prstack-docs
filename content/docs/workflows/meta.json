@@ -2,9 +2,9 @@
   "title": "Workflows",
   "pages": [
     "index",
-    "basic-workflows",
-    "megamerge-workflows",
-    "feature-base-workflows",
+    "basic-workflow",
+    "megamerge-workflow",
+    "feature-base-workflow",
     "merging",
     "tips"
   ]

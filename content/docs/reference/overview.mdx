@@ -1,0 +1,60 @@
+---
+title: Commands Overview
+description: Overview of all PrStack commands
+---
+
+# Commands Overview
+
+PrStack provides both a Terminal UI and individual CLI commands for managing PR stacks.
+
+## Terminal UI
+
+```bash
+prstack
+```
+
+Launch the interactive Terminal UI for a visual, interactive experience. The TUI provides:
+- Visual representation of your PR stack
+- Diff viewing between branches
+- Interactive PR creation and management
+- Navigation with keyboard shortcuts
+
+## CLI Commands
+
+### Core Commands
+
+- **[prstack sync](/docs/reference/sync)** - Sync your current stack with remote, create/update PRs
+- **[prstack list](/docs/reference/list)** - List your current stack structure
+- **[prstack create](/docs/reference/create)** - Create PRs for your stack
+- **[prstack tui](/docs/reference/tui)** - Launch the Terminal UI (same as running `prstack`)
+
+## Common Workflows
+
+**Quick sync workflow:**
+```bash
+# Make changes and commit
+jj commit -m "Add feature"
+
+# Sync everything
+prstack sync
+```
+
+**Explore and manage visually:**
+```bash
+# Launch TUI for interactive management
+prstack
+```
+
+**Check stack structure:**
+```bash
+# View current stack
+prstack list --include-prs
+```
+
+## Next Steps
+
+Explore each command in detail:
+- [prstack sync](/docs/reference/sync) - Detailed sync behavior and options
+- [prstack list](/docs/reference/list) - Listing options and output
+- [prstack create](/docs/reference/create) - PR creation details
+- [prstack tui](/docs/reference/tui) - TUI features and navigation
