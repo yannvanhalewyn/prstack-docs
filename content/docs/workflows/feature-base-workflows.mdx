@@ -1,11 +1,11 @@
 ---
 title: Feature Base Workflow
-description: Working on multiple independent stacks simultaneously
+description: Learn to use feature bases as organizational unit
 ---
 
-# Parallel Development Workflows
+# Working on Multiple Parallel feature bases
 
-## Working on Multiple Independent Stacks
+Please see the [Feature Base Command](/docs/reference/feature-base) before reading about multiple parallel feature bases.
 
 You can have multiple independent stacks in your repository simultaneously:
 
@@ -17,6 +17,7 @@ gitGraph
   commit id: "Auth: Setup"
   branch feature-auth-ui
   commit id: "Login page"
+  checkout feature-auth
   branch feature-auth-api
   commit id: "Auth endpoints"
   checkout main
@@ -24,6 +25,7 @@ gitGraph
   commit id: "Payment: Setup"
   branch feature-payments-ui
   commit id: "Checkout page"
+  checkout feature-payments
   branch feature-payments-api
   commit id: "Payment endpoints"
 ```
@@ -117,9 +119,3 @@ for branch in feature-auth feature-payments; do
   prstack sync
 done
 ```
-
-## See Also
-
-- [Multi-Level Stacks](/docs/workflows/multi-level-stacks) - Building deep stacks
-- [Basic Workflow](/docs/workflows/basic) - Getting started with PrStack
-- [Tips](/docs/workflows/tips) - Best practices for workflow management

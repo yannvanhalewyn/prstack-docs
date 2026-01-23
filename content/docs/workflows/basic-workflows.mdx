@@ -1,6 +1,6 @@
 ---
 title: Basic Workflow
-description: Learn the basic PrStack workflow
+description: Learn to execute basic PR stacking workflows
 ---
 
 # Basic Workflow
@@ -23,7 +23,7 @@ gitGraph
   commit id: "Add feature B tests"
 ```
 
-This creates the stack: `feature-b → feature-a → main`
+This creates the stack: `main → feature-a → feature-b`
 
 ## Creating a Stack
 
@@ -149,7 +149,7 @@ prstack create
 
 ## When to Use Deep Stacks
 
-- Building features that require multiple layers (database, API, UI)
+- Building features that require multiple layers (database, API, UI) that depend on each other
 - Implementing complex refactors that need incremental changes
 - Creating large features that benefit from staged rollout
 - Working on architectural changes that affect multiple parts of the system

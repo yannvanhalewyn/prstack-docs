@@ -1,4 +1,4 @@
 {
   "title": "Reference",
-  "pages": ["index", "overview", "tui", "list", "create-prs", "sync", "feature-base"]
+  "pages": ["index", "tui", "list", "create-prs", "sync", "feature-base"]
 }

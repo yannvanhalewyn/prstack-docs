@@ -1,14 +1,16 @@
 ---
-title: Workflow Tips
+title: Tips & Tricks
 description: Best practices and tips for advanced PrStack workflows
 ---
 
-# Tips for Advanced Workflows
+# Tips for better workflows
+
+Below are some tips and tricks for PR stacking workflows.
 
 ## 1. Name Branches Descriptively
 
 ```bash
-# Good: Shows hierarchy
+# Good: Shows owner for collaboration and hierarchy in naming
 tom/feature-base-auth
 tom/feature-auth-backend
 tom/feature-auth-frontend
@@ -34,25 +36,7 @@ Feature bases help you:
 
 See the [feature-base command](/docs/reference/feature-base) for more details.
 
-## 3. Document Stack Structure
-
-Add comments to your PRs explaining the stack:
-
-```markdown
-# Stack Position
-
-This PR is part of the user authentication stack:
-- #123 feature-auth → main (foundation)
-- #124 feature-auth-backend → feature-auth (this PR)
-- #125 feature-auth-frontend → feature-auth (parallel)
-```
-
-This helps reviewers understand:
-- Where this PR fits in the larger feature
-- What other PRs to review
-- The order of merging
-
-## 4. Keep PR Sizes Reasonable
+## 3. Keep PR Sizes Reasonable
 
 Even in deep stacks, keep individual PRs small:
 - Aim for < 500 lines changed per PR
@@ -65,48 +49,38 @@ Benefits:
 - Simpler to fix issues
 - Lower risk of conflicts
 
-## 5. Use Draft PRs for WIP
+## 4. Use Draft PRs for WIP
 
-Mark PRs as draft while the stack is still being developed:
+Create PRs as drafts as soon as some work has been done. Convert to ready when the entire stack is complete.
 
-```bash
-gh pr create --draft --base feature-auth --title "WIP: Auth backend"
-```
+This does the following:
 
-Convert to ready when the entire stack is complete.
-
-This signals to reviewers:
 - The work is still in progress
-- Don't spend time on detailed review yet
-- The stack structure may still change
+- Others can see your progress and code changes
+- Signals they don't need to spend time on detailed review yet
+- Ensures work is always backed up as soon as you start
 
-## 6. Sync Frequently
+## 5. Sync Frequently
 
 Run `prstack sync` often:
 - Before starting new work
 - After making commits
-- Before requesting reviews
-- After pulling updates
+- After merging PRs
 
 Frequent syncing:
 - Keeps your PRs up to date
 - Ensures remote is up to date
 - Reduces merge conflicts when collaborating
 
-## 7. Communicate with Your Team
+## 6. Communicate with Your Team
 
 When working with stacked PRs, it's good to keep a good naming convention in PR names. Something like `dashboard-featurs: api-layer 1 - add basic api layer`
 
 *note*: having PRStack also maintain comments about the stack with links to other PR is something I'm considering. Submit a feature request issue if you'd like to see this.
 
-## 8. Use the TUI for Exploration
+## 7. Use the TUI for Exploration
 
 The Terminal UI is great for:
 - Understanding stack structure and exploring PR structure
 - Viewing diffs between branches
 - Creating and merging PRs
-
-## See Also
-
-- [Basic Workflow](/docs/workflows/basic) - Getting started with PrStack
-- [Multi-Level Stacks](/docs/workflows/multi-level-stacks) - Working with deep stacks
