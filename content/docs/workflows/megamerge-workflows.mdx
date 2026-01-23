@@ -1,0 +1,76 @@
+---
+title: Megamerge Workflow
+description: Managing complex multi-level PR stacks with PrStack
+---
+
+## Megamerge Workflow
+
+The [Megamerge Workflow](https://ofcr.se/jujutsu-merge-workflow) is a workflow that allows you to work simultaneously on multiple feature branches by creating something called a mega merge, a change which is a merge of multiple parallel branches. This allows you to see the result of all these changes combined, and offers benefits like catching merge conflicts early etc.. PR Stack is very suited for such workflows, with or without feature base branches.
+
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'git0':'#6366f1','git1':'#f59e0b','git2':'#8b5cf6','git3':'#8b5cf6','git4':'#8b5cf6','git5':'#8b5cf6'}}}%%
+gitGraph
+  commit id: "v1.0"
+  commit id: "Stable"
+  branch v2-rewrite
+  commit id: "Setup v2 architecture"
+  branch v2-backend
+  commit id: "New API design"
+  commit id: "Database schema"
+  checkout v2-rewrite
+  branch v2-frontend
+  commit id: "New UI framework"
+  commit id: "Component library"
+  checkout v2-rewrite
+  branch v2-migration
+  commit id: "Migration scripts"
+  commit id: "Data validation"
+  checkout v2-rewrite
+  branch v2-docs
+  commit id: "API documentation"
+  commit id: "User guide"
+  checkout main
+  merge v2-rewrite id: "Release v2.0" tag: "v2.0"
+```
+
+**Setup:**
+
+```bash
+# Create feature base for v2 rewrite
+prstack feature-base create v2-rewrite
+
+# Multiple developers create branches off the feature base
+git checkout -b v2-backend v2-rewrite
+git checkout -b v2-frontend v2-rewrite
+git checkout -b v2-migration v2-rewrite
+git checkout -b v2-docs v2-rewrite
+
+# Each branch can be developed and PR'd independently
+git checkout v2-backend
+prstack sync  # Creates PR: v2-backend → v2-rewrite
+
+git checkout v2-frontend
+prstack sync  # Creates PR: v2-frontend → v2-rewrite
+```
+
+**Merging:**
+
+```bash
+# Review and merge all component PRs into v2-rewrite
+# (PRs target v2-rewrite, not main)
+
+# When all components are complete and merged into v2-rewrite
+# Remove the feature base designation
+prstack feature-base remove v2-rewrite
+
+# Create the final megamerge PR
+git checkout v2-rewrite
+prstack create
+# Creates PR: v2-rewrite → main
+```
+
+## See Also
+
+- [Feature Base Command](/docs/reference/feature-base) - Managing feature base branches
+- [Basic Workflow](/docs/workflows/basic) - Getting started with PrStack
+- [Parallel Development](/docs/workflows/parallel-development) - Working on multiple stacks
