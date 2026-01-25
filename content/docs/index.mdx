@@ -5,6 +5,8 @@ description: A CLI and TUI app for effortless PR management
 
 # PrStack
 
+![PrStack TUI](/prstack-tui.png)
+
 PRStack is a flexible tool that embraces the chaos of day to day development. It allows you to create any workflows your Version Control System (VCS) supports, and offers commands to manage Pull Requests (PR) based on the current state of the commit log.
 
 It also supports a bunch of [workflows](/docs/workflows) that will make it a lot easier to make lots of small incremental Pull Requests. These workflows are also very suitable for modern parallelized AI powered development.
@@ -13,7 +15,7 @@ It's free and open source.
 
 ## Why PR Stacking
 
-Development is an ongoing train of changes while an asynchronous review process goes on. When a feature gets done and a PR is submitted, you likely need to start working on the next thing. Often you'll want to keep working from where you were, so you make a new branch from your previous branch. This is the start of PR stacking. If a review process takes long enough, you may be 4 branches in and then things get more complicated to manage. After a review some PRs may get merged, some may not, so your stack is ever changing. If you merge from the Github UI, your local stack is outdated with the remote.
+Development is an ongoing train of changes while an asynchronous review process goes on. When a bit of work gets done a PR gets submitted. Then you likely want to start working on the next thing and continue on the work you just did, so you make a new branch from your previous branch. This is the start of branch stacking. At some point that first branch gets merged, and you need to sync up with the remote and drop the merged branch from the stack. If a review process takes a while, you may be 4 branches in and then things get more complicated to manage. After review some PRs may get merged, some may not, so your stack is ever changing. If you merge from the Github UI, your local stack is outdated with the remote.
 
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'git0':'#6366f1','git1':'#8b5cf6','git2':'#8b5cf6'}}}%%
@@ -31,7 +33,10 @@ Especially if you need to go back and make alterations based on review outputs, 
 
 ## How to use PR Stack
 
-After any changes to both your commit log or managing PRs in Github, you can always run `prstack sync` will then be sure to help
+After any changes to both your commit log or managing PRs in Github, you can use PR stack's TUI (`prstack`) to inspect and manage your stack. It will show you which stack elements have and don't have PRs for them, you can run a diffing programm on the element, you can create PRs, see the review status, and merge PRs.
+
+After making changes, adding branches or merging on the remote, run
+run `prstack sync`. This will guide you through the process of getting your local and remote stacks in sync, fetching and pushing any changes etc.., prompt you for rebasing and making missing PRs. You can run this at any time.
 
 ## CLI and TUI app
 
@@ -94,6 +99,9 @@ prstack sync
 
   </Tab>
 </Tabs>
+
+
+![PrStack Sync](/prstack-sync.jpg)
 
 
 ## Next Steps
