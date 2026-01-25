@@ -15,6 +15,26 @@ prstack list [options]
 
 ## Options
 
+<TypeTable
+  type={{
+    "--include-prs": {
+      description: "The VCS backend to use. Currently supported: `:jujutsu` and `:git`",
+      type: ":jujutsu or :git",
+      default: ":jujutsu",
+    },
+    "--all": {
+      description: "A set of branches to ignore. Supports '*' wildcards.",
+      type: "set<string>",
+    },
+    ":feature-base-branches": {
+      description: "A set of branches that are feature bases. When PrStack discovers your stack, any branches in this set will be treated as a trunk for other stacks. This is also managed via the prstack feature-base command. Supports '*' wildcards",
+      type: "set<string>",
+    },
+  }}
+/>
+
+## Options
+
 ### `--include-prs`
 
 Include associated PR URLs in the output.
