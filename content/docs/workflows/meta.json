@@ -1,7 +1,6 @@
 {
   "title": "Workflows",
   "pages": [
-    "index",
     "basic-workflow",
     "megamerge-workflow",
     "feature-base-workflow",

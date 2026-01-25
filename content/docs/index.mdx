@@ -15,6 +15,18 @@ It's free and open source.
 
 Development is an ongoing train of changes while an asynchronous review process goes on. When a feature gets done and a PR is submitted, you likely need to start working on the next thing. Often you'll want to keep working from where you were, so you make a new branch from your previous branch. This is the start of PR stacking. If a review process takes long enough, you may be 4 branches in and then things get more complicated to manage. After a review some PRs may get merged, some may not, so your stack is ever changing. If you merge from the Github UI, your local stack is outdated with the remote.
 
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'git0':'#6366f1','git1':'#8b5cf6','git2':'#8b5cf6'}}}%%
+gitGraph
+  commit id: "main"
+  branch feature-a
+  commit id: "Add feature A foundation"
+  commit id: "Add feature A logic"
+  branch feature-b
+  commit id: "Add feature B using A"
+  commit id: "Add feature B tests"
+```
+
 Especially if you need to go back and make alterations based on review outputs, I recommend using [Jujutsu](https://github.com/martinvonz/jj) as it makes changing history, editing a past change or inserting a node early in a stack with auto rebasing easy. It also supports some advanced workflows like the [Megamerge Workflow](/docs/workflows/megamerge-workflow). Since Jujutsu makes managing your git log more like tending to a tree, or sculpting, I felt it needed a tool for managing these complex stacks and workflows to match the branchless and quick approach Jujutsu.
 
 ## How to use PR Stack

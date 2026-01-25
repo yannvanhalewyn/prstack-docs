@@ -11,20 +11,24 @@ Active development can be **dynamic and unpredictable**. PRStack embraces the ch
 
 There are other PR stacking tools like [Git Machete](https://github.com/VirtusLab/git-machete) and [Graphite](https://graphite.dev/). These have their own strengths.
 
-Graphite offers an amazing CLI and UI for viewing PR stacks and doing code reviews. It does require you to manually specify the stack each time, which makes it harder to react to structural changes or implement some more [advanced workflows](/docs/workflows/megamerge-workflow). It's also paid (with free tier), closed source and requires permissions to access your repository.
+Graphite offers a CLI and an amazing web UI for viewing PR stacks and doing code reviews. It does require you to manually specify the stack each time, which makes it harder to react to structural changes or implement some more [advanced workflows](/docs/workflows/megamerge-workflow). It's also paid (with free tier), closed source and requires permissions to access your repository.
 
-Git Machete is a strong tool, and while it does offer a way to discover stacks from the Git log, this command needs to be ran explicitely meaning the stack model can get outdated. Running commands can feel a bit clunky and it's not trivial to view, create and merge PRs using it.
+Git Machete is a strong tool, and while it does offer a command to discover stacks from the Git log, this needs to be ran explicitely meaning the stack model can get outdated. Running commands can feel a bit clunky and it's not trivial to view, create and merge PRs using it.
 
-You are responsible for managing your own Git log. If you are using git you can still use Graphite or Machete along with PRStack. [Jujutsu](https://github.com/martinvonz/jj) automatically rebases when altering the history so, when using Jujutsu, there is less need for these tools.
+With PR Stack you are responsible for shaping your own commit history, that means making branches and rebasing etc.. If you need to make deeper stacks and make changes to previous branches, a tool besides git can help keep everything in Sync. You could use Graphite or Machete perfectly alongside PR stack to rebase your stacks, then manage PRs from PRStack. [Jujutsu](https://github.com/martinvonz/jj) automatically rebases and solves many UX problems Git has for interacting with the git tree. PR Stack was also developed to fit Jujutsu's branchless workflow so that is the recommended way to use PRStack.
+
+Since [Jujutsu](https://github.com/martinvonz/jj) is branchless by design, PrStack continues this philosophy by constantly adapting to the current shape of your development tree, rather than forcing you into rigid branch structures.
+
+Note that you can use Jujutsu on top of an existing repo, transparently to your coworkers.
 
 ## How It Works
 
 PrStack embraces a **branch-anywhere** philosophy:
 
 1. **Work naturally**: Create branches wherever you need them in your development tree
-2. **Dynamic discovery**: Run `prstack sync` from any branch to automatically discover the stack from your current position to trunk
-3. **Adaptive management**: Switch to any other branch and run sync again - PrStack adapts to the new context
-4. **Automatic PR creation**: Missing PRs are identified and can be created with a single prompt
+2. **Dynamic discovery**: Run any `prstack` commands from any change in the log to automatically discover the stack between your current position and trunk fork point
+3. **Adaptive management**: Switch to any other branch and run a command again - PrStack adapts to the new context
+4. **Automatic PR creation**: Missing PRs are identified and can be created with a single command
 
 ## VCS Agnostic Design
 
@@ -33,5 +37,6 @@ PrStack is implemented in a way to work with any Version Control System. Current
 - **[Jujutsu](https://github.com/martinvonz/jj)**: First-class support for the branchless VCS
 - **[Git](https://git-scm.com/)**: Traditional Git workflow support (coming soon)
 
-More can be added in the future by implementing the [VCS protocol](https://github.com/yannvanhalewyn/prstack/blob/main/src/prstack/vcs.clj#L18)
-Since [Jujutsu](https://github.com/martinvonz/jj) is branchless by design, PrStack continues this philosophy by constantly adapting to the current shape of your development tree, rather than forcing you into rigid branch structures.
+More can be added in the future by implementing the [VCS protocol](https://github.com/yannvanhalewyn/prstack/blob/main/src/prstack/vcs.clj#L18). At this time I haven't made some kind of plugin system yet. If you have a request PR Stack to work with another VCS, please submit an [issue](https://github.com/yannvanhalewyn/prstack/issues/new).
+
+It also designed to work with multiple remote hosts. Currently it only supports Github. I have not made a plugin system yet. If you want PR Stack to work with another host like Gitlab please submit an [issue](https://github.com/yannvanhalewyn/prstack/issues/new).
