@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function HomePage() {
   return (
@@ -11,13 +12,13 @@ export default function HomePage() {
             <span className="text-cyan-400">Stack</span>
           </h1>
           <p className="mb-4 text-2xl md:text-3xl text-gray-800 font-semibold">
-            Embrace the chaos of development
+            Pull Request Stacking made easy
           </p>
           <p className="mb-12 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            A VCS-agnostic CLI and TUI app for effortless PR stack management. 
+            PR Stack is a CLI and TUI app for effortless PR stack management.
             Branch anywhere, work naturally, and let PRStack adapt to your workflow.
           </p>
-          
+
           <div className="flex gap-4 justify-center mb-16">
             <Link
               href="/docs"
@@ -33,15 +34,16 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Placeholder for TUI Screenshot */}
+          {/* TUI Screenshot */}
           <div className="mb-20 rounded-xl overflow-hidden shadow-2xl border-2 border-gray-400 bg-gray-900 max-w-4xl mx-auto">
-            <div className="aspect-[16/10] flex items-center justify-center text-gray-500 bg-gradient-to-br from-gray-800 to-gray-900">
-              <div className="text-center p-8">
-                <div className="text-6xl mb-4">⌨️</div>
-                <p className="text-xl font-mono">TUI Screenshot Placeholder</p>
-                <p className="text-sm mt-2 opacity-75">Interactive terminal interface</p>
-              </div>
-            </div>
+            <Image
+              src="/prstack-tui.png"
+              alt="PRStack TUI - Interactive terminal interface showing PR stack management"
+              width={1920}
+              height={1200}
+              className="w-full h-auto"
+              priority
+            />
           </div>
         </div>
 
@@ -77,7 +79,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
             Simple <span className="text-purple-400">Workflow</span>
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {/* Create Stack */}
             <div className="bg-gray-50/50 backdrop-blur rounded-xl p-6 border border-gray-300 shadow-lg">
@@ -115,7 +117,7 @@ prstack sync
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
             Why <span className="text-cyan-400">PRStack</span>?
           </h2>
-          
+
           <div className="space-y-4">
             <div className="bg-gray-50/50 backdrop-blur rounded-xl p-6 border border-gray-300 shadow-lg">
               <h4 className="font-semibold mb-2 text-gray-900 text-lg">
@@ -140,10 +142,10 @@ prstack sync
             <div className="bg-gray-50/50 backdrop-blur rounded-xl p-6 border border-gray-300 shadow-lg">
               <h4 className="font-semibold mb-2 text-gray-900 text-lg">
                 <span className="text-amber-400 mr-2">✓</span>
-                Perfect for AI-powered development
+                AI workflow proof
               </h4>
               <p className="text-gray-700 ml-7">
-                Modern parallelized workflows with multiple branches in flight? PRStack handles it effortlessly.
+                Modern parallelized workflows with multiple branches in flight? PRStack handles it effortlessly. See the <a href="/docs/workflows/megamerge-workflow" className="text-cyan-400 underline font-medium hover:text-cyan-500 transition-colors">Megamerge Workflow</a> for a useful workflow when working with coding agents.
               </p>
             </div>
           </div>
@@ -179,8 +181,8 @@ prstack sync
         <div className="container mx-auto px-4 text-center text-gray-600">
           <p>
             Built with ❤️ for developers who embrace the chaos |{' '}
-            <a 
-              href="https://github.com/yannvanhalewyn/prstack" 
+            <a
+              href="https://github.com/yannvanhalewyn/prstack"
               className="text-cyan-400 hover:text-cyan-500 font-semibold"
             >
               GitHub

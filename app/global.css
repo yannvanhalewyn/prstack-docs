@@ -19,7 +19,7 @@
   --color-gray-700: #acacc4;
   --color-gray-800: #d0d0e4;
   --color-gray-900: #e8e8f2;
-  
+
   /* Accent colors - Vibrant cyan & electric purple */
   --color-cyan-400: #22d3ee;
   --color-cyan-500: #06b6d4;
@@ -35,28 +35,53 @@
 
 /* Override Fumadocs CSS variables with retro theme */
 :root {
-  --fd-background: #0a0a14;
+  --fd-background: #050510;
   --fd-foreground: #d4d4e8;
-  --fd-muted: #1a1338;
+  --fd-muted: #0a0a18;
   --fd-muted-foreground: #8484a8;
-  --fd-popover: #1f1a42;
+  --fd-popover: #0f0a24;
   --fd-popover-foreground: #d4d4e8;
-  --fd-card: #1a1338;
+  --fd-card: #0a0a18;
   --fd-card-foreground: #d4d4e8;
-  --fd-border: #2d2456;
+  --fd-border: #1a1338;
   --fd-primary: #22d3ee;
-  --fd-primary-foreground: #0a0a14;
+  --fd-primary-foreground: #050510;
   --fd-secondary: #c084fc;
-  --fd-secondary-foreground: #0a0a14;
-  --fd-accent: #1f1a42;
+  --fd-secondary-foreground: #050510;
+  --fd-accent: #0f0a24;
   --fd-accent-foreground: #22d3ee;
   --fd-ring: #22d3ee;
+
+  /* Retro sidebar background - deep purple gradient */
+  --fd-sidebar-background: #0f0a24;
+
+  /* Try overriding card/muted for sidebar */
+  --docs-sidebar-bg: linear-gradient(180deg, #1a1338 0%, #0f0a24 100%);
 }
 
 /* Dark theme base styles - Deep space purple */
 body {
-  background-color: #0a0a14;
+  background-color: #050510;
   color: #d4d4e8;
+}
+
+/* Main content area - very dark blue-purple with reduced opacity */
+main,
+article,
+[role="main"] {
+  background-color: rgba(5, 5, 16, 0.38) !important;
+}
+
+/* Force sidebar background with multiple selectors */
+.retro-sidebar,
+aside.retro-sidebar,
+.retro-sidebar > div,
+aside,
+nav[aria-label="Sidebar"],
+.docs-sidebar,
+[data-sidebar="true"],
+div[class*="sidebar"] {
+  background: linear-gradient(180deg, #1a1338 0%, #0f0a24 100%) !important;
 }
 
 /* Prose styling for dark theme - Electric highlights */
@@ -172,4 +197,79 @@ body {
   border-left: 3px solid #22d3ee;
   padding-left: 0.5rem;
   margin-left: -0.5rem;
+}
+
+/* Retro sidebar styling */
+aside[data-sidebar] {
+  background: linear-gradient(180deg, #1a1338 0%, #0f0a24 100%) !important;
+  border-right: 2px solid #2d2456 !important;
+  box-shadow: 2px 0 20px rgba(34, 211, 238, 0.05);
+}
+
+/* Also try alternative selectors */
+.fd-sidebar,
+[role="complementary"] {
+  background: linear-gradient(180deg, #1a1338 0%, #0f0a24 100%) !important;
+  border-right: 2px solid #2d2456 !important;
+  box-shadow: 2px 0 20px rgba(34, 211, 238, 0.05);
+}
+
+/* Sidebar navigation items */
+aside nav a,
+.fd-sidebar nav a,
+[role="complementary"] nav a {
+  color: #acacc4 !important;
+  transition: all 0.2s ease;
+  border-radius: 0.375rem;
+}
+
+aside nav a:hover,
+.fd-sidebar nav a:hover,
+[role="complementary"] nav a:hover {
+  color: #22d3ee !important;
+  background-color: rgba(34, 211, 238, 0.08) !important;
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
+}
+
+aside nav a[data-active="true"],
+aside nav a[aria-current="page"],
+.fd-sidebar nav a[data-active="true"],
+.fd-sidebar nav a[aria-current="page"],
+[role="complementary"] nav a[data-active="true"],
+[role="complementary"] nav a[aria-current="page"] {
+  color: #22d3ee !important;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.15) 0%, rgba(192, 132, 252, 0.1) 100%) !important;
+  border-left: 3px solid #22d3ee;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+/* Sidebar folder/section headers */
+aside nav button,
+aside nav [role="button"],
+.fd-sidebar nav button,
+.fd-sidebar nav [role="button"],
+[role="complementary"] nav button,
+[role="complementary"] nav [role="button"] {
+  color: #c084fc !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Sidebar search box styling */
+aside [data-search-dialog],
+.fd-sidebar [data-search-dialog],
+[role="complementary"] [data-search-dialog] {
+  background: rgba(31, 26, 66, 0.8) !important;
+  border: 1px solid #2d2456 !important;
+  color: #acacc4 !important;
+}
+
+aside [data-search-dialog]:hover,
+.fd-sidebar [data-search-dialog]:hover,
+[role="complementary"] [data-search-dialog]:hover {
+  border-color: #22d3ee !important;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.2);
 }

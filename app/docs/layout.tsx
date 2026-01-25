@@ -8,6 +8,9 @@ export default function Layout({ children }: { children: ReactNode }) {
     <DocsLayout 
       tree={source.pageTree} 
       {...baseOptions()}
+      sidebar={{
+        className: 'retro-sidebar'
+      }}
     >
       {children}
     </DocsLayout>
