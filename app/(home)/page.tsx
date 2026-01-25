@@ -36,7 +36,7 @@ export default function HomePage() {
           </div>
 
           {/* TUI Screenshot */}
-          <div className="mb-20 rounded-xl overflow-hidden shadow-2xl border-2 border-gray-400 bg-gray-900 max-w-4xl mx-auto">
+          <div className="mb-20 rounded-xl overflow-hidden shadow-2xl border-2 border-gray-400 max-w-4xl mx-auto">
             <Image
               src="/prstack-tui.png"
               alt="PRStack TUI - Interactive terminal interface showing PR stack management"
@@ -62,7 +62,7 @@ export default function HomePage() {
             <div className="text-4xl mb-4">🔄</div>
             <h3 className="text-xl font-bold mb-3 text-gray-900">Auto-Discovery</h3>
             <p className="text-gray-700">
-              Run <code className="px-2 py-1 bg-gray-900 text-amber-400 rounded text-sm font-mono">prstack sync</code> from any branch to automatically trace your stack back to trunk.
+              Run <code className="px-2 py-1 bg-gray-100 text-amber-400 rounded text-sm font-mono">prstack sync</code> from any branch to automatically trace your stack back to trunk.
             </p>
           </div>
 
@@ -87,13 +87,14 @@ export default function HomePage() {
               <h4 className="font-semibold mb-3 text-gray-900 flex items-center gap-2">
                 <span className="text-cyan-400">1.</span> Create your stack
               </h4>
-              <pre className="bg-gray-900 text-gray-300 p-4 rounded-lg overflow-x-auto text-sm font-mono border border-gray-700">
-{`# Branch naturally as you work
-git checkout -b feature-a
-# ... make changes ...
-
-git checkout -b feature-b
-# ... make changes ...`}
+              <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono border border-gray-700">
+                <span className="text-gray-600"># Branch naturally as you work</span><br />
+                <span className="text-gray-900">git checkout -b feature-a</span><br />
+                <br />
+                <span className="text-gray-600"># ... make changes ...</span><br />
+                <span className="text-gray-900">git checkout -b feature-b</span><br />
+                <br />
+                <span className="text-gray-600"># ... make changes ...</span><br />
               </pre>
             </div>
 
@@ -102,12 +103,12 @@ git checkout -b feature-b
               <h4 className="font-semibold mb-3 text-gray-900 flex items-center gap-2">
                 <span className="text-purple-400">2.</span> Sync and create PRs
               </h4>
-              <pre className="bg-gray-900 text-gray-300 p-4 rounded-lg overflow-x-auto text-sm font-mono border border-gray-700">
-{`# Discover & manage your stack
-prstack sync
-
-# Discovers: feature-b → feature-a → main
-# Creates chained PRs automatically`}
+              <pre className="bg-gray-100 text-gray-300 p-4 rounded-lg overflow-x-auto text-sm font-mono border border-gray-700">
+                <span className="text-gray-600"># Discover & manage your stack</span><br />
+                <span className="text-gray-900">prstack sync</span><br />
+                <br />
+                <span className="text-gray-600"># Discovers: feature-b → feature-a → main</span><br />
+                <span className="text-gray-600"># Guides you through making chained PRs</span><br />
               </pre>
             </div>
           </div>
