@@ -7,8 +7,9 @@ export default function HomePage() {
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-20 md:py-32">
         <div className="text-center max-w-5xl mx-auto">
-          <h1 className="mb-6 text-6xl md:text-7xl font-bold">
-            <span className="text-gray-900">Pr</span>
+          <h1 className="flex items-center justify-center gap-2 mb-6 text-6xl md:text-7xl font-bold">
+            <img src="/logo-white.svg" alt="PRStack Logo" className="inline-block w-12 h-12 text-white" />
+            <span className="text-gray-900">PR</span>
             <span className="text-cyan-400">Stack</span>
           </h1>
           <p className="mb-4 text-2xl md:text-3xl text-gray-800 font-semibold">
