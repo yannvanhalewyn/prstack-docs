@@ -26,12 +26,87 @@ Create a `.prstack/config.edn` file in your repository:
       description: "A set of branches that are feature bases. When PrStack discovers your stack, any branches in this set will be treated as a trunk for other stacks. This is also managed via the prstack feature-base command. Supports '*' wildcards",
       type: "set<string>",
     },
+    ":diffview-cmd": {
+      description: "Command template for viewing diffs in the TUI. Use $from-sha and $to-sha placeholders for commit SHAs.",
+      type: "string",
+      default: "$EDITOR -c \"Difft $from-sha..$to-sha\"",
+    },
   }}
 />
 
 See the [feature base command](/docs/reference/feature-base) for more information about `:feature-base-branches`.
 
-*Example Configuration:*
+## Configuring the Diff Viewer
+
+The [TUI](/docs/reference/tui) allows you to view diffs between changes by pressing `d` on a selected change. By default, this uses your `$EDITOR` environment variable with a Neovim-specific command. You can customize this to use any diff viewer of your choice.
+
+### Configuration
+
+The configuration file location is `~/.config/prstack/config.edn` (note: this is in your home directory, not the repository).
+
+Add a `:diffview-cmd` key with a template string that includes `$from-sha` and `$to-sha` placeholders:
+
+```clojure
+{:diffview-cmd "your-command $from-sha $to-sha"}
+```
+
+The placeholders will be replaced with the actual commit SHAs when you trigger the diff viewer.
+
+### Examples
+
+**Neovim with DiffviewOpen** (requires [diffview.nvim](https://github.com/sindrets/diffview.nvim)):
+
+```clojure
+{:diffview-cmd "nvim -c 'DiffviewOpen $from-sha..$to-sha'"}
+```
+
+**Neovim with Difftastic** (requires [difftastic.nvim](https://github.com/yannvanhalewyn/difftastic.nvim)):
+
+```clojure
+{:diffview-cmd "nvim -c 'Difft $from-sha..$to-sha'"}
+```
+
+**Git's built-in difftool**:
+
+```clojure
+{:diffview-cmd "git difftool $from-sha..$to-sha"}
+```
+
+**VS Code**:
+
+```clojure
+{:diffview-cmd "code --diff $from-sha $to-sha"}
+```
+
+**Difftastic CLI** (requires [difftastic](https://difftastic.wilfred.me.uk/)):
+
+```clojure
+{:diffview-cmd "git diff $from-sha..$to-sha | difft --display side-by-side"}
+```
+
+**GitHub CLI** (opens diff in browser):
+
+```clojure
+{:diffview-cmd "gh browse -- commit/$to-sha"}
+```
+
+**Delta** (requires [delta](https://github.com/dandavison/delta)):
+
+```clojure
+{:diffview-cmd "git diff $from-sha..$to-sha | delta"}
+```
+
+**Lazygit**:
+
+```clojure
+{:diffview-cmd "lazygit -f $from-sha..$to-sha"}
+```
+
+### Default Behavior
+
+If no configuration is provided, PRStack defaults to `$EDITOR -c "Difft $from-sha..$to-sha"`, which assumes a Neovim setup with the `Difft` command available.
+
+## Example Configuration
 
 Here's a complete example configuration file:
 
