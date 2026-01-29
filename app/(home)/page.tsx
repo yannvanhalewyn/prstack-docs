@@ -85,7 +85,7 @@ export default function HomePage() {
             {/* Create Stack */}
             <div className="bg-gray-50/50 backdrop-blur rounded-xl p-6 border border-gray-300 shadow-lg">
               <h4 className="font-semibold mb-3 text-gray-900 flex items-center gap-2">
-                <span className="text-cyan-400">1.</span> Create your stack
+                <span className="text-cyan-400">1.</span> Create your stacks
               </h4>
               <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono border border-gray-700">
                 <span className="text-gray-600"># Branch naturally as you work</span><br />
