@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block build artifacts and internal paths
+Disallow: /_next/
+Disallow: /404/
+Disallow: /_not-found/
+
+# Sitemap location (update with your actual domain)
+Sitemap: https://prstack.dev/sitemap.xml

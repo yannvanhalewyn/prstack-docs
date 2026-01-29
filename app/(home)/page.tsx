@@ -1,5 +1,32 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: 'PRStack - GitHub PR Stacking Tool | Git PR Management CLI',
+  description: 'PRStack is a powerful GitHub PR management tool and PR stacking CLI for Git and Jujutsu. Simplify pull request workflows with automatic stack discovery and effortless PR management.',
+  openGraph: {
+    title: 'PRStack - GitHub PR Stacking Tool',
+    description: 'Effortless PR stack management for Git and Jujutsu. Auto-discover stacks, create chained PRs, and streamline your GitHub workflow.',
+    url: 'https://prstack.dev',
+    siteName: 'PRStack',
+    images: [
+      {
+        url: '/prstack-tui.png',
+        width: 2182,
+        height: 1120,
+        alt: 'PRStack TUI - Interactive terminal interface for PR management',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PRStack - GitHub PR Stacking Tool',
+    description: 'Effortless PR stack management for Git and Jujutsu',
+    images: ['/prstack-tui.png'],
+  },
+};
 
 export default function HomePage() {
   return (
@@ -8,15 +35,16 @@ export default function HomePage() {
       <div className="container mx-auto px-4 py-20 md:py-32">
         <div className="text-center max-w-5xl mx-auto">
           <h1 className="flex items-center justify-center gap-2 mb-6 text-6xl md:text-7xl font-bold">
-            <img src="/logo-white.svg" alt="PRStack Logo" className="inline-block w-12 h-12 text-white" />
-            <span className="text-gray-900">PR</span>
-            <span className="text-cyan-400">Stack</span>
+            <span className="sr-only">PRStack - GitHub PR Stacking Tool and PR Management CLI</span>
+            <img src="/logo-white.svg" alt="" className="inline-block w-12 h-12 text-white" aria-hidden="true" />
+            <span className="text-gray-900" aria-hidden="true">PR</span>
+            <span className="text-cyan-400" aria-hidden="true">Stack</span>
           </h1>
           <p className="mb-4 text-2xl md:text-3xl text-gray-800 font-semibold">
-            Pull Request Stacking made easy
+            The Ultimate PR Stacking Tool for GitHub
           </p>
           <p className="mb-12 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            PR Stack is a CLI and TUI app for effortless PR stack management.
+            PRStack is the most flexible GitHub PR management tool and stacking CLI for Git and Jujutsu.
             Branch anywhere, work naturally, and let PRStack adapt to your workflow.
           </p>
 
@@ -51,7 +79,9 @@ export default function HomePage() {
         {/* Key Features */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
           <div className="bg-gray-50/50 backdrop-blur rounded-xl p-8 border border-gray-300 shadow-lg">
-            <div className="text-4xl mb-4">🌳</div>
+            <div className="mb-4">
+              <img src="/icons/branch-anywhere.svg" alt="" className="w-16 h-16" aria-hidden="true" />
+            </div>
             <h3 className="text-xl font-bold mb-3 text-gray-900">Branch Anywhere</h3>
             <p className="text-gray-700">
               Create branches wherever you need them. PRStack dynamically discovers your stack from any position—no planning required.
@@ -59,7 +89,9 @@ export default function HomePage() {
           </div>
 
           <div className="bg-gray-50/50 backdrop-blur rounded-xl p-8 border border-gray-300 shadow-lg">
-            <div className="text-4xl mb-4">🔄</div>
+            <div className="mb-4">
+              <img src="/icons/auto-discovery.svg" alt="" className="w-16 h-16" aria-hidden="true" />
+            </div>
             <h3 className="text-xl font-bold mb-3 text-gray-900">Auto-Discovery</h3>
             <p className="text-gray-700">
               Run <code className="px-2 py-1 bg-gray-100 text-amber-400 rounded text-sm font-mono">prstack sync</code> from any branch to automatically trace your stack back to trunk.
@@ -67,7 +99,9 @@ export default function HomePage() {
           </div>
 
           <div className="bg-gray-50/50 backdrop-blur rounded-xl p-8 border border-gray-300 shadow-lg">
-            <div className="text-4xl mb-4">⚡</div>
+            <div className="mb-4">
+              <img src="/icons/cli-tui.svg" alt="" className="w-16 h-16" aria-hidden="true" />
+            </div>
             <h3 className="text-xl font-bold mb-3 text-gray-900">CLI + TUI</h3>
             <p className="text-gray-700">
               Use quick CLI commands for speed or launch the interactive TUI for visual stack exploration and management.
