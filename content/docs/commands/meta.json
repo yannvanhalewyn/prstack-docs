@@ -1,4 +1,4 @@
 {
-  "title": "Reference",
+  "title": "Commands",
   "pages": ["tui", "list", "create-prs", "sync", "feature-base"]
 }

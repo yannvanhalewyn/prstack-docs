@@ -3,10 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'PRStack - GitHub PR Stacking Tool | Git PR Management CLI',
+  title: 'PRStack',
   description: 'PRStack is a powerful GitHub PR management tool and PR stacking CLI for Git and Jujutsu. Simplify pull request workflows with automatic stack discovery and effortless PR management.',
+  keywords: ['pr stacking tool', 'github pr management', 'pr management tool', 'git pr tool', 'stacked pull requests', 'pr stack', 'jujutsu pr tool'],
   openGraph: {
-    title: 'PRStack - GitHub PR Stacking Tool',
+    title: 'PRStack - GitHub PR Stacking Tool | Git PR Management CLI',
     description: 'Effortless PR stack management for Git and Jujutsu. Auto-discover stacks, create chained PRs, and streamline your GitHub workflow.',
     url: 'https://prstack.dev',
     siteName: 'PRStack',
@@ -22,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PRStack - GitHub PR Stacking Tool',
-    description: 'Effortless PR stack management for Git and Jujutsu',
+    title: 'PRStack - GitHub PR Stacking Tool | Git PR Management CLI',
+    description: 'Effortless PR stack management for Git and Jujutsu. Auto-discover stacks, create chained PRs, and streamline your GitHub workflow.',
     images: ['/prstack-tui.png'],
   },
 };
@@ -38,7 +39,7 @@ export default function HomePage() {
             <span className="sr-only">PRStack - GitHub PR Stacking Tool and PR Management CLI</span>
             <img src="/logo-white.svg" alt="" className="inline-block w-12 h-12 text-white" aria-hidden="true" />
             <span className="text-gray-900" aria-hidden="true">PR</span>
-            <span className="text-cyan-400" aria-hidden="true">Stack</span>
+            <span className="text-cyan-400" style={{"marginLeft": "-0.1rem"}} aria-hidden="true">stack</span>
           </h1>
           <p className="mb-4 text-2xl md:text-3xl text-gray-800 font-semibold">
             The Ultimate PR Stacking Tool for GitHub
@@ -80,9 +81,10 @@ export default function HomePage() {
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
           <div className="bg-gray-50/50 backdrop-blur rounded-xl p-8 border border-gray-300 shadow-lg">
             <div className="mb-4">
-              <img src="/icons/branch-anywhere.svg" alt="" className="w-16 h-16" aria-hidden="true" />
+
+              <img src="/icons/branch-anywhere.svg" alt="" className="w-12 h-12" aria-hidden="true" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Branch Anywhere</h3>
+            <h3 className="text-3xl font-bold mb-3 text-gray-900">Branch Anywhere</h3>
             <p className="text-gray-700">
               Create branches wherever you need them. PRStack dynamically discovers your stack from any position—no planning required.
             </p>
@@ -90,19 +92,19 @@ export default function HomePage() {
 
           <div className="bg-gray-50/50 backdrop-blur rounded-xl p-8 border border-gray-300 shadow-lg">
             <div className="mb-4">
-              <img src="/icons/auto-discovery.svg" alt="" className="w-16 h-16" aria-hidden="true" />
+              <img src="/icons/auto-discovery.svg" alt="" className="w-12 h-12" aria-hidden="true" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">Auto-Discovery</h3>
+            <h3 className="text-3xl font-bold mb-3 text-gray-900">Staying in sync</h3>
             <p className="text-gray-700">
-              Run <code className="px-2 py-1 bg-gray-100 text-amber-400 rounded text-sm font-mono">prstack sync</code> from any branch to automatically trace your stack back to trunk.
+              Run <code className="px-2 py-1 bg-gray-100 text-amber-400 rounded text-sm font-mono">prstack sync</code> from any branch to automatically trace your stack back to trunk. It will guide you through syncing up with the remote, detect which branches have open PRs and guide you through making missing ones.
             </p>
           </div>
 
           <div className="bg-gray-50/50 backdrop-blur rounded-xl p-8 border border-gray-300 shadow-lg">
             <div className="mb-4">
-              <img src="/icons/cli-tui.svg" alt="" className="w-16 h-16" aria-hidden="true" />
+              <img src="/icons/cli-tui.svg" alt="" className="w-12 h-12" aria-hidden="true" />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-gray-900">CLI + TUI</h3>
+            <h3 className="text-3xl font-bold mb-3 text-gray-900">CLI + TUI</h3>
             <p className="text-gray-700">
               Use quick CLI commands for speed or launch the interactive TUI for visual stack exploration and management.
             </p>

@@ -1,0 +1,54 @@
+---
+title: prstack list
+description: List the current PR stack
+---
+
+# Command: `list`
+
+Lists the current PR stack from your position to trunk.
+
+## Usage
+
+```bash
+prstack list [options]
+```
+
+## Options
+
+### `--exclude-prs` (or `-E`)
+
+Skip fetching PR information. By default, `prstack list` fetches and displays PR URLs for each branch in the stack. Use this flag to disable PR fetching for faster execution, which is useful in scripting scenarios where PR information isn't needed.
+
+```bash
+prstack list --exclude-prs
+```
+
+### `--all`
+
+List all branches in the stack, not just from the current position to trunk.
+
+```bash
+prstack list --all
+```
+
+## How It Works
+
+The `list` command:
+
+1. Traces from your current branch back to the trunk
+2. Displays each branch in the stack
+3. Fetches and displays PR information for each branch (unless `--exclude-prs` is used)
+
+## When to Use
+
+Use `prstack list` when you want to:
+
+- Quickly see your current stack structure
+- Verify which branches are in your stack
+- Check PR status for branches in your stack
+- Get PR URLs for sharing or reference
+
+## See Also
+
+- [prstack sync](/docs/commands/sync) - Sync the current stack
+- [prstack create](/docs/commands/create) - Create missing PRs

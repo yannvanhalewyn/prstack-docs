@@ -1,0 +1,106 @@
+---
+title: prstack (tui app)
+description: Interactive terminal interface for managing PR stacks
+---
+
+# TUI App
+
+Run `prstack` without arguments to launch the interactive TUI (Terminal User Interface).
+
+## Usage
+
+```bash
+prstack
+```
+
+## Features
+
+The TUI provides a full-featured interface for managing your PR stacks:
+
+- **Stack Detection**: Automatically detect and visualize your current PR stack
+- **Visual representation**: Visually see
+- **Navigation**: Browse through your stack with keyboard shortcuts
+- **Visual Diffs**: View diffs between branches using your favorite diffing tool (press `d` on a selected change)
+- **PR Management**: Create, refresh, and merge PRs interactively
+
+## Keyboard Shortcuts
+
+### Quick Reference
+
+| Key | Action | Description |
+|-----|--------|-------------|
+| [`j`](#navigation) | Move Down | Navigate down through stack items |
+| [`k`](#navigation) | Move Up | Navigate up through stack items |
+| [`h`](#tabs) | Tab Left | Switch to previous tab |
+| [`l`](#tabs) | Tab Right | Switch to next tab |
+| [`1`](#tabs) | Current Stacks | Switch to "Current Stacks" tab |
+| [`2`](#tabs) | My Stacks | Switch to "My Stacks" tab |
+| [`3`](#tabs) | All Stacks | Switch to "All Stacks" tab |
+| [`d`](#diff) | Diff | View diff between selected branch and base |
+| [`o`](#open-pr) | Open PR | Open the PR URL in browser |
+| [`c`](#create-pr) | Create PR | Create a new PR for selected branch |
+| [`m`](#merge-pr) | Merge PR | Merge the selected PR |
+| [`s`](#sync) | Sync | Run the sync command |
+| [`r`](#refresh) | Refresh | Refresh the display and reload data |
+| [`q`](#quit) | Quit | Exit the TUI application |
+
+### Navigation
+
+- **`j`**: Move down through stack items
+- **`k`**: Move up through stack items
+
+### Tabs
+
+- **`h`**: Switch to the previous tab
+- **`l`**: Switch to the next tab
+- **`1`**: Switch to "Current Stacks" tab
+- **`2`**: Switch to "My Stacks" tab
+- **`3`**: Switch to "All Stacks" tab
+
+### Diff
+
+- **`d`**: View diff between the selected change and its parent. The diff viewer can be [configured](/docs/configuration#configuring-the-diff-viewer) to use your preferred tool.
+
+### Open PR
+
+- **`o`**: Open the pull request URL in your default browser for the selected branch.
+
+### Create PR
+
+- **`c`**: Create a new pull request for the selected branch. This opens an interactive flow to configure the PR.
+
+### Merge PR
+
+- **`m`**: Merge the pull request for the selected branch. This will merge the PR using your configured merge strategy.
+
+### Sync
+
+- **`s`**: Run the sync command to update your stack. This ensures all branches are up to date with their dependencies.
+
+### Refresh
+
+- **`r`**: Refresh the display and reload data from GitHub to show the latest state.
+
+### Quit
+
+- **`q`**: Exit the TUI application and return to the command line.
+
+## Interface
+
+The TUI interface provides:
+
+- A tree view of your current stack
+- Branch relationships and PR status
+- Interactive commands for stack operations
+- Visual feedback for all actions
+
+## When to Use the TUI
+
+The TUI is ideal when you want:
+
+- A visual overview of your entire stack
+- To perform multiple operations in sequence
+- Interactive exploration of your branch structure
+- Real-time feedback during stack management
+
+For quick, scriptable operations, use the [CLI commands](/docs/commands/sync) instead.

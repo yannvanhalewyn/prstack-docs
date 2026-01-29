@@ -198,7 +198,13 @@ Now you have two independent stacks:
 At any time, check your current stack:
 
 ```bash
-prstack list --include-prs
+prstack list
+```
+
+By default, this displays your stack with PR information. For faster execution without PR details (useful in scripts), use:
+
+```bash
+prstack list --exclude-prs
 ```
 
 ## Using the TUI
